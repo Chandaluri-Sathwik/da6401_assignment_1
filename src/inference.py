@@ -18,6 +18,11 @@ def parse_arguments():
     - activation: Activation function ('relu', 'sigmoid', 'tanh')
     """
     parser = argparse.ArgumentParser(description='Run inference on test set')
+    parser.add_argument('-m','--model_path', type=str, help='Path to saved model weights (relative path)',default='models/')
+    parser.add_argument('-d','--dataset', choices=['mnist', 'fashion_mnist'], help='Dataset to evaluate on',default='mnist')
+    parser.add_argument('-b','--batch_size', type=int, help='Batch size for inference',default=64)
+    parser.add_argument('-nhl','--num_layers', type=int,  help='List of hidden layer sizes',default=2)
+    parser.add_argument('-sz','--hidden_size', type=int,nargs='+', help='Number of neurons in hidden layers',default=[128, 64])  
     
     return parser.parse_args()
 

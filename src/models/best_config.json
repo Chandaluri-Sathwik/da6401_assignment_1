@@ -1,0 +1,17 @@
+{
+  "dataset": "mnist",
+  "epochs": 10,
+  "batch_size": 64,
+  "loss": "cross_entropy",
+  "optimizer": "adam",
+  "learning_rate": 0.001,
+  "num_layers": 2,
+  "hidden_size": [
+    128,
+    64
+  ],
+  "activation": "relu",
+  "weight_init": "xavier",
+  "wandb_project": "da6401_assignment_1",
+  "model_save_path": "models/"
+}
