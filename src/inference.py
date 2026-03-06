@@ -18,6 +18,8 @@ def parse_arguments():
     parser.add_argument("-c", "--config_path", type=str, default="models/best_config.json")
     parser.add_argument("-d", "--dataset", choices=["mnist", "fashion_mnist"], default=None)
     parser.add_argument("-l", "--loss", choices=["cross_entropy", "mse"], default=None)
+    parser.add_argument('-nhl','--num_layers', type=int,  help='List of hidden layer sizes',default=2)
+    parser.add_argument('-sz','--hidden_size', type=int,nargs='+', help='Number of neurons in hidden layers',default=[128, 64])
     return parser.parse_args()
 
 
