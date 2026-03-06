@@ -20,6 +20,8 @@ def parse_arguments():
     parser.add_argument("-l", "--loss", choices=["cross_entropy", "mse"], default=None)
     parser.add_argument('-nhl','--num_layers', type=int,  help='List of hidden layer sizes',default=2)
     parser.add_argument('-sz','--hidden_size', type=int,nargs='+', help='Number of neurons in hidden layers',default=[128, 64])
+    parser.add_argument('-a','--activation', choices=['relu', 'sigmoid', 'tanh'], help='Activation function to use',default='relu')
+    parser.add_argument('-w','--weight_init', choices=['random', 'xavier'], help='Weight initialization method',default='xavier')
     return parser.parse_args()
 
 
