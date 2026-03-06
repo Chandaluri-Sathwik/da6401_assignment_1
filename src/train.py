@@ -7,9 +7,14 @@ import argparse
 import json
 import os
 import numpy as np
-import wandb
 from ann.neural_network import NeuralNetwork
 from utils.data_loader import load_data
+
+try:
+    import wandb
+except ImportError:
+    print("wandb not found, proceeding without it. Install with `pip install wandb` for logging and visualization.")
+    wandb = None
 
 def parse_arguments():
     """
@@ -73,7 +78,14 @@ def main():
     X_train, y_train, X_val, y_val, X_test, y_test = load_data(args.dataset)
 
     neural_network = NeuralNetwork(args)
-    run=wandb.init(project=args.wandb_project,config=vars(args))
+    run=None
+    if wandb is not None:
+        try:
+            run=wandb.init(project=args.wandb_project,config=vars(args))
+        except Exception as e:
+            print(f"Failed to initialize W&B run: {e}. Proceeding without logging.")
+            run=None
+    
     best_f1=-1.0
     best_weights=None
     for epoch in range(args.epochs):
@@ -81,7 +93,8 @@ def main():
         val_metrics=neural_network.evaluate(X_val,y_val)
         test_metrics=neural_network.evaluate(X_test,y_test)
         print(f"Epoch {epoch+1}/{args.epochs} - Val Loss: {val_metrics['loss']:.4f}, Val Acc: {val_metrics['accuracy']:.4f}, Val F1: {val_metrics['f1']:.4f} - Test Loss: {test_metrics['loss']:.4f}, Test Acc: {test_metrics['accuracy']:.4f}, Test F1: {test_metrics['f1']:.4f}")
-        wandb.log({
+        if run is not None:
+            wandb.log({
                 "epoch": epoch + 1,
                 "val_loss": val_metrics["loss"],
                 "val_accuracy": val_metrics["accuracy"],

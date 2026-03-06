@@ -1,0 +1,34 @@
+Epoch 1/1 | loss: 0.2915 | acc: 0.9156
+Validation | loss: 0.1591 | acc: 0.9540
+Epoch 1/10 - Val Loss: 0.1591, Val Acc: 0.9540, Val F1: 0.9537 - Test Loss: 0.1428, Test Acc: 0.9576, Test F1: 0.9573
+Epoch 1/1 | loss: 0.1180 | acc: 0.9639
+Validation | loss: 0.1182 | acc: 0.9660
+Epoch 2/10 - Val Loss: 0.1182, Val Acc: 0.9660, Val F1: 0.9658 - Test Loss: 0.1018, Test Acc: 0.9680, Test F1: 0.9676
+Epoch 1/1 | loss: 0.0819 | acc: 0.9751
+Validation | loss: 0.1094 | acc: 0.9675
+Epoch 3/10 - Val Loss: 0.1094, Val Acc: 0.9675, Val F1: 0.9673 - Test Loss: 0.0888, Test Acc: 0.9715, Test F1: 0.9713
+Epoch 1/1 | loss: 0.0605 | acc: 0.9810
+Validation | loss: 0.0953 | acc: 0.9737
+Epoch 4/10 - Val Loss: 0.0953, Val Acc: 0.9737, Val F1: 0.9735 - Test Loss: 0.0797, Test Acc: 0.9746, Test F1: 0.9744
+Epoch 1/1 | loss: 0.0484 | acc: 0.9839
+Validation | loss: 0.0944 | acc: 0.9755
+Epoch 5/10 - Val Loss: 0.0944, Val Acc: 0.9755, Val F1: 0.9753 - Test Loss: 0.0832, Test Acc: 0.9753, Test F1: 0.9750
+Epoch 1/1 | loss: 0.0355 | acc: 0.9887
+Validation | loss: 0.1048 | acc: 0.9725
+Epoch 6/10 - Val Loss: 0.1048, Val Acc: 0.9725, Val F1: 0.9724 - Test Loss: 0.0832, Test Acc: 0.9753, Test F1: 0.9751
+Epoch 1/1 | loss: 0.0294 | acc: 0.9901
+Validation | loss: 0.1259 | acc: 0.9713
+Epoch 7/10 - Val Loss: 0.1259, Val Acc: 0.9713, Val F1: 0.9713 - Test Loss: 0.1000, Test Acc: 0.9709, Test F1: 0.9709
+Epoch 1/1 | loss: 0.0241 | acc: 0.9921
+Validation | loss: 0.1036 | acc: 0.9730
+Epoch 8/10 - Val Loss: 0.1036, Val Acc: 0.9730, Val F1: 0.9727 - Test Loss: 0.0878, Test Acc: 0.9759, Test F1: 0.9758
+Epoch 1/1 | loss: 0.0205 | acc: 0.9933
+Validation | loss: 0.1066 | acc: 0.9747
+Epoch 9/10 - Val Loss: 0.1066, Val Acc: 0.9747, Val F1: 0.9744 - Test Loss: 0.0867, Test Acc: 0.9764, Test F1: 0.9762
+Epoch 1/1 | loss: 0.0197 | acc: 0.9933
+Validation | loss: 0.1095 | acc: 0.9732
+Epoch 10/10 - Val Loss: 0.1095, Val Acc: 0.9732, Val F1: 0.9730 - Test Loss: 0.0928, Test Acc: 0.9765, Test F1: 0.9763
+Training complete!
+Saved model to: ./
+Saved config to: .\best_config.json
+Best test F1: 0.9753
