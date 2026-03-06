@@ -17,6 +17,7 @@ def parse_arguments():
     parser.add_argument("-m", "--model_path", type=str, default="models/model.npy")
     parser.add_argument("-c", "--config_path", type=str, default="models/best_config.json")
     parser.add_argument("-d", "--dataset", choices=["mnist", "fashion_mnist"], default=None)
+    parser.add_argument("-l", "--loss", choices=["cross_entropy", "mse"], default=None)
     return parser.parse_args()
 
 
