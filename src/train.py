@@ -10,7 +10,6 @@ import numpy as np
 from ann.neural_network import NeuralNetwork
 from utils.data_loader import load_data
 
-
 def parse_arguments():
     """
     Parse command-line arguments.
@@ -42,8 +41,6 @@ def parse_arguments():
     parser.add_argument('-w','--weight_init', choices=['random', 'xavier'], help='Weight initialization method',default='xavier')
     parser.add_argument('-p','--wandb_project', type=str, help='W&B project name',default='da6401_assignment_1') 
     parser.add_argument('-m','--model_save_path', type=str, help='Path to save trained model (relative path)',default='models/')
-
-
     
     return parser.parse_args()
 
@@ -93,9 +90,6 @@ def main():
 
     print(f"Saved model to: {model_path}")
     print(f"Saved config to: {config_path}")
-
-
-
 
 if __name__ == '__main__':
     main()
