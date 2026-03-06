@@ -46,7 +46,7 @@ def parse_arguments():
     parser.add_argument('-a','--activation', choices=['relu', 'sigmoid', 'tanh'], help='Activation function to use',default='relu')
     parser.add_argument('-w_i','--weight_init', choices=['random', 'xavier'], help='Weight initialization method',default='xavier')
     parser.add_argument('-w_p','--wandb_project', type=str, help='W&B project name',default='da6401_assignment_1') 
-    parser.add_argument('-m','--model_save_path', type=str, help='Path to save trained model (relative path)',default='./')
+    parser.add_argument('-m','--model_save_path', type=str, help='Path to save trained model (relative path)',default='./best_model.npy')
     
     return parser.parse_args()
 
