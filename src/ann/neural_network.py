@@ -3,6 +3,7 @@ Main Neural Network Model class
 Handles forward and backward propagation loops
 """
 import numpy as np
+from sklearn.metrics import f1_score, precision_score, recall_score
 
 from .activations import get_activation_function
 from .objective_functions import compute_loss, compute_loss_derivative
@@ -111,7 +112,10 @@ class NeuralNetwork:
         loss = compute_loss(logits, y, self.loss_function)
         preds = np.argmax(logits, axis=1)
         acc = np.mean(preds == y)
-        return {"logits": logits, "loss": float(loss), "accuracy": float(acc)}
+        precision = precision_score(y, preds, average="macro", zero_division=0)
+        recall = recall_score(y, preds, average="macro", zero_division=0)
+        f1 = f1_score(y, preds, average="macro", zero_division=0)
+        return {"logits": logits, "loss": float(loss), "accuracy": float(acc), "precision": float(precision), "recall": float(recall), "f1": float(f1)}
 
     def get_weights(self):
         d = {}

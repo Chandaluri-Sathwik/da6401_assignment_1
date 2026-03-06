@@ -13,5 +13,5 @@
   "activation": "relu",
   "weight_init": "xavier",
   "wandb_project": "da6401_assignment_1",
-  "model_save_path": "models/"
+  "model_save_path": "./"
 }

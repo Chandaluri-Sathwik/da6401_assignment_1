@@ -7,6 +7,7 @@ import argparse
 import json
 import os
 import numpy as np
+import wandb
 from ann.neural_network import NeuralNetwork
 from utils.data_loader import load_data
 
@@ -67,29 +68,52 @@ def main():
     Main training function.
     """
     args = parse_arguments()
-    print(args)
+
     # Load data
     X_train, y_train, X_val, y_val, X_test, y_test = load_data(args.dataset)
+
     neural_network = NeuralNetwork(args)
-    neural_network.train(X_train, y_train, epochs=args.epochs, batch_size=args.batch_size,X_val=X_val,y_val=y_val)
+    run=wandb.init(project=args.wandb_project,config=vars(args))
+    best_f1=-1.0
+    best_weights=None
+    for epoch in range(args.epochs):
+        neural_network.train(X_train,y_train,epochs=1,batch_size=args.batch_size,X_val=X_val,y_val=y_val)
+        val_metrics=neural_network.evaluate(X_val,y_val)
+        test_metrics=neural_network.evaluate(X_test,y_test)
+        print(f"Epoch {epoch+1}/{args.epochs} - Val Loss: {val_metrics['loss']:.4f}, Val Acc: {val_metrics['accuracy']:.4f}, Val F1: {val_metrics['f1']:.4f} - Test Loss: {test_metrics['loss']:.4f}, Test Acc: {test_metrics['accuracy']:.4f}, Test F1: {test_metrics['f1']:.4f}")
+        wandb.log({
+                "epoch": epoch + 1,
+                "val_loss": val_metrics["loss"],
+                "val_accuracy": val_metrics["accuracy"],
+                "val_precision": val_metrics["precision"],
+                "val_recall": val_metrics["recall"],
+                "val_f1": val_metrics["f1"],
+                "test_loss": test_metrics["loss"],
+                "test_accuracy": test_metrics["accuracy"],
+                "test_precision": test_metrics["precision"],
+                "test_recall": test_metrics["recall"],
+                "test_f1": test_metrics["f1"],
+            })
+        if val_metrics["f1"]>best_f1:
+            best_f1=val_metrics["f1"]
+            best_weights=neural_network.get_weights()
 
     print("Training complete!")
-
-    test_metrics = neural_network.evaluate(X_test, y_test)
-    print("Test loss:", test_metrics["loss"], "Test acc:", test_metrics["accuracy"])
 
     # Save weights + config
     model_path = args.model_save_path
     os.makedirs(os.path.dirname(model_path), exist_ok=True)
 
-    weights = neural_network.get_weights()
-    np.save(model_path, weights, allow_pickle=True)
+    np.save(model_path, best_weights, allow_pickle=True)
 
     config_path = os.path.join(os.path.dirname(model_path), "best_config.json")
     _save_config(args, config_path)
 
     print(f"Saved model to: {model_path}")
     print(f"Saved config to: {config_path}")
+    print(f"Best test F1: {best_f1:.4f}")
+    if run is not None:
+        run.finish()
 
 if __name__ == '__main__':
     main()

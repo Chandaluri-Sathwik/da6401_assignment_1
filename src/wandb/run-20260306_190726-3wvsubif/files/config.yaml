@@ -1,0 +1,75 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            9lwi9d8m5kq99irp3yxy7xmpde7m785v:
+                codePath: src\train.py
+                codePathLocal: train.py
+                cpu_count: 4
+                cpu_count_logical: 8
+                disk:
+                    /:
+                        total: "214720385024"
+                        used: "194502926336"
+                email: saisathwik005@gmail.com
+                executable: C:\Program Files\Python313\python.exe
+                git:
+                    commit: 58dea8ffe99d9a8e3c4697c7640f2f328b751659
+                    remote: https://github.com/Chandaluri-Sathwik/da6401_assignment_1.git
+                host: Kames
+                memory:
+                    total: "17052987392"
+                os: Windows-11-10.0.26200-SP0
+                program: C:\Users\Hp\Desktop\DL\da6401_assignment_1\src\train.py
+                python: CPython 3.13.4
+                root: C:\Users\Hp\Desktop\DL\da6401_assignment_1\src
+                startedAt: "2026-03-06T13:37:26.389787Z"
+                writerId: 9lwi9d8m5kq99irp3yxy7xmpde7m785v
+        m: []
+        python_version: 3.13.4
+        t:
+            "1":
+                - 2
+                - 3
+                - 5
+                - 53
+            "2":
+                - 2
+                - 3
+                - 5
+                - 53
+            "3":
+                - 2
+                - 16
+            "4": 3.13.4
+            "5": 0.25.0
+            "8":
+                - 3
+            "12": 0.25.0
+            "13": windows-amd64
+activation:
+    value: relu
+batch_size:
+    value: 64
+dataset:
+    value: mnist
+epochs:
+    value: 10
+hidden_size:
+    value:
+        - 128
+        - 64
+learning_rate:
+    value: 0.001
+loss:
+    value: cross_entropy
+model_save_path:
+    value: ./
+num_layers:
+    value: 2
+optimizer:
+    value: adam
+wandb_project:
+    value: da6401_assignment_1
+weight_init:
+    value: xavier

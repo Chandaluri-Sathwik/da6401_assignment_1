@@ -1,0 +1,28 @@
+{
+  "os":  "Windows-11-10.0.26200-SP0",
+  "python":  "CPython 3.13.4",
+  "startedAt":  "2026-03-06T13:37:26.389787Z",
+  "program":  "C:\\Users\\Hp\\Desktop\\DL\\da6401_assignment_1\\src\\train.py",
+  "codePath":  "src\\train.py",
+  "codePathLocal":  "train.py",
+  "git":  {
+    "remote":  "https://github.com/Chandaluri-Sathwik/da6401_assignment_1.git",
+    "commit":  "58dea8ffe99d9a8e3c4697c7640f2f328b751659"
+  },
+  "email":  "saisathwik005@gmail.com",
+  "root":  "C:\\Users\\Hp\\Desktop\\DL\\da6401_assignment_1\\src",
+  "host":  "Kames",
+  "executable":  "C:\\Program Files\\Python313\\python.exe",
+  "cpu_count":  4,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "214720385024",
+      "used":  "194502926336"
+    }
+  },
+  "memory":  {
+    "total":  "17052987392"
+  },
+  "writerId":  "9lwi9d8m5kq99irp3yxy7xmpde7m785v"
+}
