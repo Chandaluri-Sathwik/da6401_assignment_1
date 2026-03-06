@@ -14,8 +14,8 @@ from utils.data_loader import load_data
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Run inference on test set")
-    parser.add_argument("-m", "--model_path", type=str, default="models/model.npy")
-    parser.add_argument("-c", "--config_path", type=str, default="models/best_config.json")
+    parser.add_argument("-m", "--model_path", type=str, default="best_model.npy")
+    parser.add_argument("-c", "--config_path", type=str, default="best_config.json")
     parser.add_argument('-d','--dataset', choices=['mnist', 'fashion_mnist'], help='Dataset to use for training',default='mnist')
     parser.add_argument('-e','--epochs', type=int, help='Number of training epochs',default=10)
     parser.add_argument('-b','--batch_size', type=int, help='Mini-batch size',default=64)
@@ -25,7 +25,7 @@ def parse_arguments():
     parser.add_argument('-nhl','--num_layers', type=int,  help='List of hidden layer sizes',default=2)
     parser.add_argument('-sz','--hidden_size', type=int,nargs='+', help='Number of neurons in hidden layers',default=[128, 64])
     parser.add_argument('-a','--activation', choices=['relu', 'sigmoid', 'tanh'], help='Activation function to use',default='relu')
-    parser.add_argument('-w','--weight_init', choices=['random', 'xavier'], help='Weight initialization method',default='xavier')
+    parser.add_argument('-w_i','--weight_init', choices=['random', 'xavier'], help='Weight initialization method',default='xavier')
     return parser.parse_args()
 
 

@@ -38,8 +38,8 @@ def parse_arguments():
     parser.add_argument('-nhl','--num_layers', type=int,  help='List of hidden layer sizes',default=2)
     parser.add_argument('-sz','--hidden_size', type=int,nargs='+', help='Number of neurons in hidden layers',default=[128, 64])
     parser.add_argument('-a','--activation', choices=['relu', 'sigmoid', 'tanh'], help='Activation function to use',default='relu')
-    parser.add_argument('-w','--weight_init', choices=['random', 'xavier'], help='Weight initialization method',default='xavier')
-    parser.add_argument('-p','--wandb_project', type=str, help='W&B project name',default='da6401_assignment_1') 
+    parser.add_argument('-w_i','--weight_init', choices=['random', 'xavier'], help='Weight initialization method',default='xavier')
+    parser.add_argument('-w_p','--wandb_project', type=str, help='W&B project name',default='da6401_assignment_1') 
     parser.add_argument('-m','--model_save_path', type=str, help='Path to save trained model (relative path)',default='models/')
     
     return parser.parse_args()
