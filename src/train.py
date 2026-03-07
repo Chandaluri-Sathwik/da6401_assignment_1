@@ -17,28 +17,13 @@ except ImportError:
     wandb = None
 
 def parse_arguments():
-    """
-    Parse command-line arguments.
-    
-    TODO: Implement argparse with the following arguments:
-    - dataset: 'mnist' or 'fashion_mnist'
-    - epochs: Number of training epochs
-    - batch_size: Mini-batch size
-    - learning_rate: Learning rate for optimizer
-    - optimizer: 'sgd', 'momentum', 'nag', 'rmsprop', 'adam', 'nadam'
-    - hidden_layers: List of hidden layer sizes
-    - num_neurons: Number of neurons in hidden layers
-    - activation: Activation function ('relu', 'sigmoid', 'tanh')
-    - loss: Loss function ('cross_entropy', 'mse')
-    - weight_init: Weight initialization method
-    - wandb_project: W&B project name
-    - model_save_path: Path to save trained model (do not give absolute path, rather provide relative path)
-    """
+
     parser = argparse.ArgumentParser(description='Train a neural network')
     parser.add_argument('-d','--dataset', choices=['mnist', 'fashion_mnist'], help='Dataset to use for training',default='mnist')
     parser.add_argument('-e','--epochs', type=int, help='Number of training epochs',default=10)
     parser.add_argument('-b','--batch_size', type=int, help='Mini-batch size',default=64)
     parser.add_argument('-l','--loss', choices=['cross_entropy', 'mse'], help='Loss function to use',default='cross_entropy')
+    parser.add_argument('-wd','--weight_decay', type=float, help='Weight decay (L2 regularization) factor', default=0.0)
     parser.add_argument('-lr','--learning_rate', type=float, help='Learning rate for optimizer',default=0.001 )
     parser.add_argument('-o','--optimizer', choices=['sgd', 'momentum', 'nag', 'rmsprop', 'adam', 'nadam'], help='Optimizer to use for training',default='adam')
     parser.add_argument('-nhl','--num_layers', type=int,  help='List of hidden layer sizes',default=2)
@@ -64,6 +49,7 @@ def _save_config(args, config_path):
         "weight_init": args.weight_init,
         "wandb_project": args.wandb_project,
         "model_save_path": args.model_save_path,
+        "weight_decay": args.weight_decay,
     }
     with open(config_path, "w", encoding="utf-8") as f:
         json.dump(config, f, indent=2)
@@ -91,8 +77,11 @@ def main():
     for epoch in range(args.epochs):
         neural_network.train(X_train,y_train,epochs=1,batch_size=args.batch_size,X_val=X_val,y_val=y_val)
         val_metrics=neural_network.evaluate(X_val,y_val)
-        
-        print(f"Epoch {epoch+1}/{args.epochs} - Val Loss: {val_metrics['loss']:.4f}, Val Acc: {val_metrics['accuracy']:.4f}, Val F1: {val_metrics['f1']:.4f}")
+        test_metrics = neural_network.evaluate(X_test, y_test)
+        grad_norm_layer1 = None
+        if len(neural_network.layers) > 0 and neural_network.layers[0].grad_W is not None:
+            grad_norm_layer1 = float(np.linalg.norm(neural_network.layers[0].grad_W))   
+        # print(f"Epoch {epoch+1}/{args.epochs} - Val Loss: {val_metrics['loss']:.4f}, Val Acc: {val_metrics['accuracy']:.4f}, Val F1: {val_metrics['f1']:.4f}, Test Loss: {test_metrics['loss']:.4f}, Test Acc: {test_metrics['accuracy']:.4f}, Test F1: {test_metrics['f1']:.4f}")
         if run is not None:
             wandb.log({
                 "epoch": epoch + 1,
@@ -101,18 +90,24 @@ def main():
                 "val_precision": val_metrics["precision"],
                 "val_recall": val_metrics["recall"],
                 "val_f1": val_metrics["f1"],
+                "test_loss": test_metrics["loss"],
+                "test_accuracy": test_metrics["accuracy"],
+                "test_precision": test_metrics["precision"],
+                "test_recall": test_metrics["recall"],
+                "test_f1": test_metrics["f1"],
+                "grad_norm_layer1": grad_norm_layer1,
             })
         if val_metrics["f1"]>best_f1:
             best_f1=val_metrics["f1"]
             best_weights=neural_network.get_weights()
-            print(best_weights)
+         
 
     print("Training complete!")
 
     # Save weights + config
     model_path = args.model_save_path
-    os.makedirs(os.path.dirname(model_path), exist_ok=True)
-
+    if best_weights is None:
+        best_weights=neural_network.get_weights()
     np.save(model_path, best_weights, allow_pickle=True)
 
     config_path = os.path.join(os.path.dirname(model_path), "best_config.json")
@@ -120,7 +115,7 @@ def main():
 
     print(f"Saved model to: {model_path}")
     print(f"Saved config to: {config_path}")
-    print(f"Best test F1: {best_f1:.4f}")
+    print(f"Best val F1: {best_f1:.4f}")
     if run is not None:
         run.finish()
 
