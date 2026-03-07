@@ -3,10 +3,11 @@
   "epochs": 10,
   "batch_size": 64,
   "loss": "cross_entropy",
-  "optimizer": "adam",
-  "learning_rate": 0.001,
-  "num_layers": 2,
+  "optimizer": "rmsprop",
+  "learning_rate": 0.0005,
+  "num_layers": 3,
   "hidden_size": [
+    128,
     128,
     64
   ],

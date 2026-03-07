@@ -101,10 +101,6 @@ class NeuralNetwork:
 
             epoch_loss = total_loss / n
             epoch_acc = total_correct / n
-            print(f"Epoch {epoch + 1}/{epochs} | loss: {epoch_loss:.4f} | acc: {epoch_acc:.4f}")
-            if X_val is not None and y_val is not None:
-                val_metrics = self.evaluate(X_val, y_val)
-                print(f"Validation | loss: {val_metrics['loss']:.4f} | acc: {val_metrics['accuracy']:.4f}")
             
 
     def evaluate(self, X, y):

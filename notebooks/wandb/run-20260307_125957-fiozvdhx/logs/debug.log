@@ -1,0 +1,47 @@
+2026-03-07 12:59:57,070 INFO    MainThread:7664 [wandb_init.py:setup_run_log_directory():717] Logging user logs to c:\Users\Hp\Desktop\DL\da6401_assignment_1\notebooks\wandb\run-20260307_125957-fiozvdhx\logs\debug.log
+2026-03-07 12:59:57,071 INFO    MainThread:7664 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to c:\Users\Hp\Desktop\DL\da6401_assignment_1\notebooks\wandb\run-20260307_125957-fiozvdhx\logs\debug-internal.log
+2026-03-07 12:59:57,071 INFO    MainThread:7664 [wandb_init.py:init():844] calling init triggers
+2026-03-07 12:59:57,071 INFO    MainThread:7664 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'question': '2.4', 'optimizer': 'rmsprop', 'activation': 'sigmoid', 'hidden_size': [128, 128], 'num_layers': 2, 'epochs': 10, 'dataset': 'mnist', '_wandb': {}}
+2026-03-07 12:59:58,634 INFO    MainThread:7664 [wandb_init.py:init():892] starting backend
+2026-03-07 12:59:58,635 INFO    MainThread:7664 [wandb_init.py:init():895] sending inform_init request
+2026-03-07 12:59:58,640 INFO    MainThread:7664 [wandb_init.py:init():903] backend started and connected
+2026-03-07 12:59:58,645 INFO    MainThread:7664 [wandb_run.py:_label_probe_notebook():1333] probe notebook
+2026-03-07 12:59:58,646 INFO    MainThread:7664 [wandb_run.py:_label_probe_notebook():1343] Unable to probe notebook: 'charmap' codec can't decode byte 0x81 in position 29973: character maps to <undefined>
+2026-03-07 12:59:58,647 INFO    MainThread:7664 [wandb_init.py:init():973] updated telemetry
+2026-03-07 12:59:58,761 INFO    MainThread:7664 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-03-07 13:00:00,023 WARNING MainThread:7664 [wandb_init.py:init():1587] [no run ID] interrupted
+Traceback (most recent call last):
+  File "C:\Users\Hp\AppData\Roaming\Python\Python313\site-packages\wandb\sdk\wandb_init.py", line 1578, in init
+    run = wi.init(run_settings, run_config, run_printer)
+  File "C:\Users\Hp\AppData\Roaming\Python\Python313\site-packages\wandb\sdk\wandb_init.py", line 1008, in init
+    result = wait_with_progress(
+        run_init_handle,
+    ...<5 lines>...
+        ),
+    )
+  File "C:\Users\Hp\AppData\Roaming\Python\Python313\site-packages\wandb\sdk\mailbox\wait_with_progress.py", line 24, in wait_with_progress
+    return wait_all_with_progress(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        [handle],
+        ^^^^^^^^^
+        timeout=timeout,
+        ^^^^^^^^^^^^^^^^
+        display_progress=display_progress,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )[0]
+    ^
+  File "C:\Users\Hp\AppData\Roaming\Python\Python313\site-packages\wandb\sdk\mailbox\wait_with_progress.py", line 78, in wait_all_with_progress
+    return asyncer.run(progress_loop_with_timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Hp\AppData\Roaming\Python\Python313\site-packages\wandb\sdk\lib\asyncio_manager.py", line 137, in run
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "c:\Program Files\Python313\Lib\concurrent\futures\_base.py", line 451, in result
+    self._condition.wait(timeout)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "c:\Program Files\Python313\Lib\threading.py", line 359, in wait
+    waiter.acquire()
+    ~~~~~~~~~~~~~~^^
+KeyboardInterrupt
+2026-03-07 13:08:50,525 INFO    MainThread:7664 [wandb_init.py:_post_run_cell_hook():606] [no run ID] resuming backend
