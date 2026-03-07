@@ -77,7 +77,9 @@ def main():
     for epoch in range(args.epochs):
         neural_network.train(X_train,y_train,epochs=1,batch_size=args.batch_size,X_val=X_val,y_val=y_val)
         val_metrics=neural_network.evaluate(X_val,y_val)
-        test_metrics = neural_network.evaluate(X_test, y_test)
+        test_metrics = None
+        if run is not None:
+            test_metrics = neural_network.evaluate(X_test, y_test)
         grad_norm_layer1 = None
         if len(neural_network.layers) > 0 and neural_network.layers[0].grad_W is not None:
             grad_norm_layer1 = float(np.linalg.norm(neural_network.layers[0].grad_W))   
@@ -90,13 +92,16 @@ def main():
                 "val_precision": val_metrics["precision"],
                 "val_recall": val_metrics["recall"],
                 "val_f1": val_metrics["f1"],
-                "test_loss": test_metrics["loss"],
-                "test_accuracy": test_metrics["accuracy"],
-                "test_precision": test_metrics["precision"],
-                "test_recall": test_metrics["recall"],
-                "test_f1": test_metrics["f1"],
                 "grad_norm_layer1": grad_norm_layer1,
             })
+            if test_metrics is not None:
+                wandb.log({
+                    "test_loss": test_metrics["loss"],
+                    "test_accuracy": test_metrics["accuracy"],
+                    "test_precision": test_metrics["precision"],
+                    "test_recall": test_metrics["recall"],
+                    "test_f1": test_metrics["f1"],
+                })
         if val_metrics["f1"]>best_f1:
             best_f1=val_metrics["f1"]
             best_weights=neural_network.get_weights()
