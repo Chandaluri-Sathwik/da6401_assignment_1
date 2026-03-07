@@ -29,7 +29,11 @@ class NeuralNetwork:
             act=cli_args.activation if i<len(dims)-2 else None
             layer=NeuralLayer(input_dim=dims[i],output_dim=dims[i+1],activation=act,weight_init=cli_args.weight_init)#didnt put weight decay
             self.layers.append(layer)
-        self.optimizer=Optimizer(name=cli_args.optimizer,learning_rate=cli_args.learning_rate)
+        self.optimizer=Optimizer(
+            name=cli_args.optimizer,
+            learning_rate=cli_args.learning_rate,
+            weight_decay=getattr(cli_args, "weight_decay", 0.0),
+        )
         self.grad_W = None
         self.grad_b = None
         self.activation, self.activation_derivative = get_activation_function(cli_args.activation)

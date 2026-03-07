@@ -16,7 +16,7 @@ def parse_arguments():
     parser = argparse.ArgumentParser(description="Run inference on test set")
     parser.add_argument("-m", "--model_path", type=str, default="./best_model.npy")
     parser.add_argument("-c", "--config_path", type=str, default="./best_config.json")
-    parser.add_argument('-d','--dataset', choices=['mnist', 'fashion_mnist'], help='Dataset to use for training',default='mnist')
+    parser.add_argument('-d','--dataset', choices=['mnist', 'fashion_mnist'], help='Optional dataset override for evaluation', default=None)
     parser.add_argument('-e','--epochs', type=int, help='Number of training epochs',default=10)
     parser.add_argument('-b','--batch_size', type=int, help='Mini-batch size',default=64)
     parser.add_argument('-l','--loss', choices=['cross_entropy', 'mse'], help='Loss function to use',default='cross_entropy')
