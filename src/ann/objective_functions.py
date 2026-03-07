@@ -30,10 +30,18 @@ def mse_loss(logits, y_true):
     return np.mean(np.sum((probabilities-y_oh)**2, axis=1))
 
 def mse_derivative(logits, y_true):
-    batch_size=logits.shape[0]
-    probabilities=softmax(logits)
-    y_oh=one_hot(y_true, num_classes=logits.shape[1])
-    return 2*(probabilities-y_oh)/batch_size
+    batch_size = logits.shape[0]
+    probabilities = softmax(logits)
+    y_oh = one_hot(y_true, num_classes=logits.shape[1])
+
+    # dL/dp for L = mean_i sum_j (p_ij - y_ij)^2
+    dL_dp = 2.0 * (probabilities - y_oh) / batch_size
+
+    # Convert dL/dp to dL/dz through softmax Jacobian:
+    # J_softmax(z)^T v = p * (v - <v, p>)
+    dot = np.sum(dL_dp * probabilities, axis=1, keepdims=True)
+    dL_dz = probabilities * (dL_dp - dot)
+    return dL_dz
 
 def compute_loss(logits,y_true,loss_type='cross_entropy'):
     if loss_type=='cross_entropy':

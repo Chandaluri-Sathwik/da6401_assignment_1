@@ -1,0 +1,5 @@
+2026-03-07 14:32:23,574 INFO    MainThread:7664 [wandb_init.py:setup_run_log_directory():717] Logging user logs to c:\Users\Hp\Desktop\DL\da6401_assignment_1\notebooks\wandb\run-20260307_143223-v7gazuer\logs\debug.log
+2026-03-07 14:32:23,576 INFO    MainThread:7664 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to c:\Users\Hp\Desktop\DL\da6401_assignment_1\notebooks\wandb\run-20260307_143223-v7gazuer\logs\debug-internal.log
+2026-03-07 14:32:23,576 INFO    MainThread:7664 [wandb_init.py:init():844] calling init triggers
+2026-03-07 14:32:23,577 INFO    MainThread:7664 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'question': '2.5', 'dataset': 'mnist', 'optimizer': 'rmsprop', 'activation': 'relu', 'learning_rate': 0.1, 'hidden_size': [128, 128, 128], 'epochs': 15, 'batch_size': 64, '_wandb': {}}
