@@ -1,22 +1,7 @@
 # Assignment 1: Multi-Layer Perceptron for Image Classification
 
-## Overview
+Gradescope link 
+https://wandb.ai/sai-sathwik/da6401_assignment_1/reports/DA6401-Assignment-1-ME23B238--VmlldzoxNjEzMTMxNA?accessToken=qtj0czckspw1ny6rhnsja0mbwwdrug40itsawz94vngpez9c3ll23zrje1obmdyp
 
-This assignment requires you to implement a neural network from scratch using only NumPy. You will build all components including layers, activations, optimizers, and loss functions, then train your network on MNIST or Fashion-MNIST datasets.
-
-## Learning Objectives
-
-- Understand forward and backward propagation
-- Implement gradient computation manually
-- Implement various optimizers (SGD, Momentum, Adam, Nadam)
-- Work with activation functions and their derivatives
-- Train and evaluate neural networks
-- Log experiments using Weights & Biases
-
-## Contact
-
-For questions or issues, please contact the teaching staff or post on the course forum.
-
----
-
-Good luck with your implementation!
+Github Repo link
+https://github.com/Chandaluri-Sathwik/da6401_assignment_1
