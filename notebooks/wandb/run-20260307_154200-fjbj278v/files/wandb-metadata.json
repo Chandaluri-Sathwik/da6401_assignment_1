@@ -1,0 +1,28 @@
+{
+  "os":  "Windows-11-10.0.26200-SP0",
+  "python":  "CPython 3.13.4",
+  "startedAt":  "2026-03-07T10:12:00.659989Z",
+  "program":  "c:\\Users\\Hp\\Desktop\\DL\\da6401_assignment_1\\notebooks\\wandb_submit.ipynb",
+  "codePath":  "c:\\Users\\Hp\\Desktop\\DL\\da6401_assignment_1\\notebooks\\wandb_submit.ipynb",
+  "codePathLocal":  "wandb_submit.ipynb",
+  "git":  {
+    "remote":  "https://github.com/Chandaluri-Sathwik/da6401_assignment_1.git",
+    "commit":  "d87073839defcf585e3991f3eaf3a114f506cef0"
+  },
+  "email":  "saisathwik005@gmail.com",
+  "root":  "c:\\Users\\Hp\\Desktop\\DL\\da6401_assignment_1\\notebooks",
+  "host":  "Kames",
+  "executable":  "c:\\Program Files\\Python313\\python.exe",
+  "cpu_count":  4,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "214720385024",
+      "used":  "201929621504"
+    }
+  },
+  "memory":  {
+    "total":  "17052987392"
+  },
+  "writerId":  "pgy1uejz97xnv6uc5zas3vs076dbjv6x"
+}

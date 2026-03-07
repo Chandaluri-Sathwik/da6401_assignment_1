@@ -1,0 +1,12 @@
+{"time":"2026-03-07T15:43:42.9853587+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-03-07T15:43:44.7076974+05:30","level":"INFO","msg":"stream: created new stream","id":"lpdsgo72"}
+{"time":"2026-03-07T15:43:44.7086921+05:30","level":"INFO","msg":"handler: started","stream_id":"lpdsgo72"}
+{"time":"2026-03-07T15:43:44.7102542+05:30","level":"INFO","msg":"stream: started","id":"lpdsgo72"}
+{"time":"2026-03-07T15:43:44.7112693+05:30","level":"INFO","msg":"writer: started","stream_id":"lpdsgo72"}
+{"time":"2026-03-07T15:43:44.7118042+05:30","level":"INFO","msg":"sender: started","stream_id":"lpdsgo72"}
+{"time":"2026-03-07T15:44:23.9645031+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-03-07T15:44:24.420289+05:30","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-03-07T15:44:24.4757314+05:30","level":"INFO","msg":"stream: closing","id":"lpdsgo72"}
+{"time":"2026-03-07T15:44:24.4764764+05:30","level":"INFO","msg":"handler: closed","stream_id":"lpdsgo72"}
+{"time":"2026-03-07T15:44:24.4791867+05:30","level":"INFO","msg":"sender: closed","stream_id":"lpdsgo72"}
+{"time":"2026-03-07T15:44:24.4791867+05:30","level":"INFO","msg":"stream: closed","id":"lpdsgo72"}

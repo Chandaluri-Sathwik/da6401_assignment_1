@@ -10,12 +10,6 @@ import numpy as np
 from ann.neural_network import NeuralNetwork
 from utils.data_loader import load_data
 
-try:
-    import wandb
-except ImportError:
-    print("wandb not found, proceeding without it. Install with `pip install wandb` for logging and visualization.")
-    wandb = None
-
 def parse_arguments():
 
     parser = argparse.ArgumentParser(description='Train a neural network')
@@ -30,7 +24,8 @@ def parse_arguments():
     parser.add_argument('-sz','--hidden_size', type=int,nargs='+', help='Number of neurons in hidden layers',default=[128,128, 64])
     parser.add_argument('-a','--activation', choices=['relu', 'sigmoid', 'tanh'], help='Activation function to use',default='relu')
     parser.add_argument('-w_i','--weight_init', choices=['random', 'xavier'], help='Weight initialization method',default='xavier')
-    parser.add_argument('-w_p','--wandb_project', type=str, help='W&B project name',default='da6401_assignment_1') 
+    parser.add_argument('-w_p','--wandb_project', type=str, help='W&B project name',default='da6401_assignment_1')
+    parser.add_argument('--use_wandb', action='store_true', help='Enable Weights & Biases logging')
     parser.add_argument('-m','--model_save_path', type=str, help='Path to save trained model (relative path)',default='./best_model.npy')
     
     return parser.parse_args()
@@ -48,6 +43,7 @@ def _save_config(args, config_path):
         "activation": args.activation,
         "weight_init": args.weight_init,
         "wandb_project": args.wandb_project,
+        "use_wandb": bool(args.use_wandb),
         "model_save_path": args.model_save_path,
         "weight_decay": args.weight_decay,
     }
@@ -65,9 +61,13 @@ def main():
 
     neural_network = NeuralNetwork(args)
     run=None
-    if wandb is not None:
+    if args.use_wandb:
         try:
+            import wandb  # Lazy import to avoid autograder/network side effects by default
             run=wandb.init(project=args.wandb_project,config=vars(args))
+        except ImportError:
+            print("wandb not found, proceeding without it. Install with `pip install wandb` for logging and visualization.")
+            run=None
         except Exception as e:
             print(f"Failed to initialize W&B run: {e}. Proceeding without logging.")
             run=None
